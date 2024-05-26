@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.App-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #6a1b9a; /* Purple background color */
+  padding: 20px 30px;
+  color: white;
+}
+
+.App-nav h1 {
+  margin: 0;
+}
+
+.App-content-box {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.App-footer {
+  background-color: #6a1b9a;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.App-footer a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.App-footer a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #4A148C;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #4A148C;
+  color: white;
+}
+
+.amount {
+  color: red;
+  font-weight: bold;
+}
+
+.account-balance {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: black;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}

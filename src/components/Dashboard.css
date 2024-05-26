@@ -1,0 +1,62 @@
+.transaction-area {
+  padding: 20px;
+}
+
+.transaction-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.transaction-buttons .btn {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #6a1b9a; /* Purple color */
+  border-color: #6a1b9a; /* Purple border */
+  color: white;
+}
+
+.transaction-buttons .btn:hover {
+  background-color: #4a148c; /* Darker purple on hover */
+  border-color: #4a148c; /* Darker purple border on hover */
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-buttons .btn {
+  width: 45%;
+}
+
+.modal-buttons .btn-primary {
+  background-color: #6a1b9a; /* Purple color */
+  border-color: #6a1b9a; /* Purple border */
+  color: white;
+}
+
+.modal-buttons .btn-primary:hover {
+  background-color: #4a148c; /* Darker purple on hover */
+  border-color: #4a148c; /* Darker purple border on hover */
+}
+
+.modal-buttons .btn-secondary {
+  background-color: #cccccc;
+  border-color: #cccccc;
+}
+
+.modal-buttons .btn-secondary:hover {
+  background-color: #aaaaaa;
+  border-color: #aaaaaa;
+}
+
+.dashboard-intro {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  color: #4a148c;
+  margin-bottom: 30px;
+  text-align: center;
+  font-style: italic;
+}
