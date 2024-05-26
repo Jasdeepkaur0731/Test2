@@ -1,0 +1,123 @@
+.contact-page {
+  background-color: #f3f4f6; /* Light gray background for the page */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the page takes full viewport height */
+}
+
+.contact-container {
+  display: flex;
+  background: white; /* White background for the container */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column; /* Stack elements vertically on small screens */
+}
+
+@media (min-width: 768px) {
+  .contact-container {
+    flex-direction: row; /* Place elements side by side on larger screens */
+  }
+}
+
+.contact-form-container {
+  padding: 40px;
+  flex: 1;
+  max-width: 600px; /* Limit the width of the form container */
+}
+
+.contact-container h1, .contact-container h2 {
+  color: #4A148C;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: rgba(0, 0, 0, 0.05); /* Light semi-transparent background for the form */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contact-form label {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-bottom: 15px;
+}
+
+.contact-form button {
+  padding: 12px;
+  background-color: #4A148C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #6a1b9a;
+}
+
+.advisor-section {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.advisor-section h2 {
+  color: #4A148C;
+  margin-bottom: 15px;
+}
+
+.advisor-section p {
+  font-size: 1.1em;
+  color: #333;
+}
+
+.appointment-button {
+  padding: 10px;
+  background-color: #4A148C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.appointment-button:hover {
+  background-color: #6a1b9a;
+}
+
+.contact-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f4f6; /* Light gray background for the image container */
+  padding: 20px;
+}
+
+.contact-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

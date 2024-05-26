@@ -1,51 +1,92 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
+import backgroundImage from './background-image.jpg'; // Adjust the path accordingly
+import logo from './logo.png'; // Adjust the path accordingly
 
-function Login({ onLogin }) {
-  const [username, setUsername] = useState('');
+const Login = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [users, setUsers] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username === 'Jasdeep_kaur' && password === 'Jasdeep') {
-      onLogin();
-      navigate('/');
+  const url = 'https://json-storage-api.p.rapidapi.com/datalake';
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-RapidAPI-Key': 'c61942e7cbmsh9697cd1bbbc5744p1f9935jsn649d013f033d',
+    'X-RapidAPI-Host': 'json-storage-api.p.rapidapi.com'
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  const loadUsers = async () => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          '@context': [
+            'http://schema4i.org/Thing.jsonld',
+            'http://schema4i.org/Action.jsonld',
+            'http://schema4i.org/SearchAction.jsonld'
+          ],
+          '@type': 'SearchAction',
+          Object: {
+            '@context': [
+              'http://schema4i.org/Thing.jsonld',
+              'http://schema4i.org/Filter',
+              'http://schema4i.org/DataLakeItem',
+              'http://schema4i.org/UserAccount'
+            ],
+            '@type': 'Filter',
+            FilterItem: {
+              '@type': 'DataLakeItem',
+              Creator: {
+                '@type': 'UserAccount',
+                Identifier: 'USERID-4711'
+              }
+            }
+          }
+        })
+      });
+      const data = await response.json();
+      setUsers(data.Result.ItemListElement.map(item => item.Item));
+    } catch (error) {
+      console.error('Error loading users:', error);
+    }
+  };
+
+  const handleLogin = () => {
+    const user = users.find(user => user.About.Email === email && user.About.Password === password);
+    if (user) {
+      localStorage.setItem('accountNumber', user.About.AccountNumber);
+      window.location.href = '/dashboard';
     } else {
-      alert('Invalid username or password');
+      setErrorMessage('Invalid email or password');
     }
   };
 
   return (
-    <div className="Login">
+    <div className="Login" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="Login-container">
-        <div className="Login-header">JASBANK</div>
+        <h2 className="Login-header">Login</h2>
         <div className="Login-logo">
-          <img src="/bank-logo.png" alt="JASBANK Logo" />
+          <img src={logo} alt="JASBANK Logo" />
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={e => { e.preventDefault(); handleLogin(); }}>
           <div>
-            <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <button type="submit">Login</button>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default Login;

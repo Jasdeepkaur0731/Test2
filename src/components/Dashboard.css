@@ -1,3 +1,60 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.dashboard-header {
+  font-size: 2em;
+  color: #4A148C;
+  margin-bottom: 20px;
+}
+
+.dashboard-intro {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  color: #4a148c;
+  margin-bottom: 30px;
+  text-align: center;
+  font-style: italic;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+}
+
+.dashboard-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dashboard-card h3 {
+  font-size: 1.5em;
+  color: #4A148C;
+  margin: 15px 0;
+}
+
+.dashboard-card p {
+  font-size: 1em;
+  color: #555;
+  padding: 0 15px 15px;
+}
+
 .transaction-area {
   padding: 20px;
 }
@@ -19,44 +76,4 @@
 .transaction-buttons .btn:hover {
   background-color: #4a148c; /* Darker purple on hover */
   border-color: #4a148c; /* Darker purple border on hover */
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.modal-buttons .btn {
-  width: 45%;
-}
-
-.modal-buttons .btn-primary {
-  background-color: #6a1b9a; /* Purple color */
-  border-color: #6a1b9a; /* Purple border */
-  color: white;
-}
-
-.modal-buttons .btn-primary:hover {
-  background-color: #4a148c; /* Darker purple on hover */
-  border-color: #4a148c; /* Darker purple border on hover */
-}
-
-.modal-buttons .btn-secondary {
-  background-color: #cccccc;
-  border-color: #cccccc;
-}
-
-.modal-buttons .btn-secondary:hover {
-  background-color: #aaaaaa;
-  border-color: #aaaaaa;
-}
-
-.dashboard-intro {
-  font-family: 'Georgia', serif;
-  font-size: 20px;
-  color: #4a148c;
-  margin-bottom: 30px;
-  text-align: center;
-  font-style: italic;
 }

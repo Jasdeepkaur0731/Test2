@@ -1,33 +1,68 @@
-import React, { useState } from 'react';
+// src/components/DepositWithdrawETransfer.js
+import React from 'react';
 
-function WithdrawActivity({ onWithdraw, onCancel }) {
-  const [amount, setAmount] = useState('');
+const DepositWithdrawETransfer = ({ type, onTransaction, onCancel, formData, setFormData }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
-  const handleWithdraw = () => {
-    if (!amount) {
-      alert('Please fill in the amount');
-      return;
-    }
-    const withdrawData = { amount: parseFloat(amount) };
-    onWithdraw(withdrawData);
-    setAmount('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onTransaction(formData);
   };
 
   return (
-    <div>
-      <h2>Withdraw</h2>
-      <label>Amount:</label>
-      <input
-        type="number"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
-      <div className="modal-buttons">
-        <button className="btn btn-primary" onClick={handleWithdraw}>Withdraw</button>
-        <button className="btn btn-secondary" onClick={onCancel}>Cancel</button>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="fromAccount">From Account</label>
+        <select
+          id="fromAccount"
+          name="fromAccount"
+          className="form-control"
+          value={formData.fromAccount}
+          onChange={handleChange}
+        >
+          <option value="Savings Account">Savings Account</option>
+          <option value="Chequing Account">Chequing Account</option>
+        </select>
       </div>
-    </div>
-  );
-}
 
-export default WithdrawActivity;
+      {type === 'E-Transfer' && (
+        <div className="form-group">
+          <label htmlFor="toAccount">To Account</label>
+          <select
+            id="toAccount"
+            name="toAccount"
+            className="form-control"
+            value={formData.toAccount}
+            onChange={handleChange}
+          >
+            <option value="Savings Account">Savings Account</option>
+            <option value="Chequing Account">Chequing Account</option>
+          </select>
+        </div>
+      )}
+
+      <div className="form-group">
+        <label htmlFor="amount">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          className="form-control"
+          value={formData.amount}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancel</button>
+    </form>
+  );
+};
+
+export default DepositWithdrawETransfer;

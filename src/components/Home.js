@@ -1,44 +1,9 @@
-import React, { useState } from 'react';
-import DepositActivity from './DepositActivity';
-import WithdrawActivity from './WithdrawActivity';
-import ETransferActivity from './ETransferActivity';
-import DepositButton from './DepositButton';
+import React from 'react';
 import './Home.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faMobileAlt, faHeadset, faExchangeAlt, faHandHoldingUsd, faPiggyBank, faHome, faChartLine, faCreditCard, faUniversity, faHandshake, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
-function Home({ addTransaction }) {
-  const [modalType, setModalType] = useState('');
-  const [currentAmount, setCurrentAmount] = useState(0);
-
-  const handleDeposit = ({ amount }) => {
-    setCurrentAmount(currentAmount + amount);
-    addTransaction({ type: 'Deposit', amount, date: new Date().toLocaleString() });
-    closeModal();
-  };
-
-  const handleWithdraw = ({ amount }) => {
-    if (amount > currentAmount) {
-      alert('Insufficient funds');
-      return;
-    }
-    setCurrentAmount(currentAmount - amount);
-    addTransaction({ type: 'Withdraw', amount, date: new Date().toLocaleString() });
-    closeModal();
-  };
-
-  const handleETransfer = ({ fromAccount, toAccount, amount }) => {
-    if (amount > currentAmount) {
-      alert('Insufficient funds');
-      return;
-    }
-    setCurrentAmount(currentAmount - amount);
-    addTransaction({ type: 'E-Transfer', fromAccount, toAccount, amount, date: new Date().toLocaleString() });
-    closeModal();
-  };
-
-  const closeModal = () => {
-    setModalType('');
-  };
-
+function Home() {
   return (
     <div className="home-container">
       <div className="hero-section">
@@ -70,36 +35,55 @@ function Home({ addTransaction }) {
           <h3>Fixed Deposits</h3>
         </div>
       </div>
-      <div className="account-section">
-        <h2>Current Amount: ${currentAmount.toFixed(2)}</h2>
-        <table className="account-table">
-          <thead>
-            <tr>
-              <th>Account</th>
-              <th>Deposit</th>
-              <th>Withdraw</th>
-              <th>E-Transfer</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Savings Account</td>
-              <td><DepositButton onClick={() => setModalType('Deposit')} /></td>
-              <td><button className="btn btn-primary" onClick={() => setModalType('Withdraw')}>Withdraw</button></td>
-              <td><button className="btn btn-primary" onClick={() => setModalType('E-Transfer')}>E-Transfer</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      {modalType && (
-        <div className="modal">
-          <div className="modal-content">
-            {modalType === 'Deposit' && <DepositActivity onDeposit={handleDeposit} onCancel={closeModal} />}
-            {modalType === 'Withdraw' && <WithdrawActivity onWithdraw={handleWithdraw} onCancel={closeModal} />}
-            {modalType === 'E-Transfer' && <ETransferActivity onETransfer={handleETransfer} onCancel={closeModal} />}
+      <div className="why-bank-section">
+        <h2>Why Bank with JAS BANK?</h2>
+        <div className="why-bank-list">
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faGlobe} />
+            <p>Beneficial for international students</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faMobileAlt} />
+            <p>Easy-to-use banking app</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faHeadset} />
+            <p>Customer service 24/7</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faExchangeAlt} />
+            <p>Foreign exchange services</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faHandHoldingUsd} />
+            <p>Send money to parents with good rates</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faPiggyBank} />
+            <p>Personal investment options</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faHome} />
+            <p>Mortgage services</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faChartLine} />
+            <p>Trade online</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faHandshake} />
+            <p>Borrowing options</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faUniversity} />
+            <p>Investing services</p>
+          </div>
+          <div className="why-bank-item">
+            <FontAwesomeIcon icon={faCreditCard} />
+            <p>Chequing, saving, and credit accounts</p>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

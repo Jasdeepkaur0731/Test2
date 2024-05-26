@@ -77,3 +77,37 @@ th {
   margin-top: -10px;
   margin-bottom: 20px;
 }
+
+.transaction-table {
+  border-collapse: solid #0b0b0b;
+  width: 100%;
+}
+
+.transaction-table th,
+.transaction-table td {
+  border: 1px solid #0b0b0b;
+  padding: 8px;
+  text-align: left;
+}
+
+.transaction-table th {
+  background-color: #100f0f;
+  font-weight: bold;
+}
+
+.transaction-table tr:nth-child(even) {
+  background-color: #0f0e0e;
+}
+
+.transaction-table tr:hover {
+  background-color: #0e0e0e;
+}
+
+.transaction-table th,
+.transaction-table td:first-child {
+  text-align: center;
+}
+
+.transaction-table td:last-child {
+  text-align: right;
+}
